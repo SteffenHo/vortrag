@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import EmailInput from './components/nameInput/EmailInput';
+import EmailInput from './components/emails/EmailInput';
 
 const App = () => (
     <div className="App">
