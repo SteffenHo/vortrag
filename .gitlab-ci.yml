@@ -1,0 +1,51 @@
+image: node:10-alpine
+
+variables:
+  CONTAINER_IMAGE: registry.gitlab.com/$CI_PROJECT_PATH
+
+stages:
+  - test
+  - build
+
+eslint:
+  stage: test
+  only:
+    - master
+    - develop
+    - web
+  tags:
+    - node
+  script:
+    - npm ci
+    - npm run test:eslint
+
+test:
+  stage: test
+  only:
+    - master
+    - develop
+    - web
+  tags:
+    - node
+  script:
+    - npm ci
+    - npm run test
+
+build:
+  only:
+    - master
+    - web
+  tags:
+    - node
+  dependencies:
+    - eslint
+  stage: build
+  artifacts:
+    paths:
+      - build/*
+      - package.json
+      - package-lock.json
+    expire_in: 1 week
+  script:
+    - npm ci
+    - npm run build
