@@ -1,6 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { List } from 'immutable';
 
 const EmailList = (props) => {
     const { addresses } = props;
@@ -11,7 +12,7 @@ const EmailList = (props) => {
     );
 };
 EmailList.propTypes = {
-    addresses: PropTypes.array,
+    addresses: PropTypes.instanceOf(List),
 };
 
 EmailList.defaultProps = {
